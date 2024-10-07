@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SpawnHandler : MonoBehaviour
 {
-
     public WorldBoundsHandler worldBoundsHandler;
 
+    [System.NonSerialized]
     public LevelScriptableObject levelData;
 
     public Player player;
@@ -45,7 +45,9 @@ public class SpawnHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player.spawnHandler = this;
+        //player.spawnHandler = this;
+        //levelData = player.levelData;
+        //Debug.Log(levelData);
     }
 
     // Update is called once per frame
@@ -54,8 +56,9 @@ public class SpawnHandler : MonoBehaviour
         
     }
 
-    public void InitSpawnHandler()
+    public void InitSpawnHandler(LevelScriptableObject levelObject)
     {
+        levelData = levelObject;
         SetSpawnBounds();
         //generate by section
         GenerateSpawnPoints(highOrbitTotalMass, highOrbitObjectsToSpawn, highOrbitBounds, levelData.highOrbitObjects);
@@ -71,6 +74,7 @@ public class SpawnHandler : MonoBehaviour
     private void SetSpawnBounds()
     {
         Bounds worldBounds = worldBoundsHandler.WorldBounds;
+        Debug.Log("world bounfd" + worldBounds);
         /*
         float totalSpawnWidth = worldBounds.max.x - worldBounds.min.x - levelData.endSpawnOffset;
         Debug.Log("total spawn width: " + totalSpawnWidth);
@@ -181,9 +185,9 @@ public class SpawnHandler : MonoBehaviour
             //Debug.Log("calculated radius");
 
             // generate random point within bounds
-            Vector2 randomPoint = new Vector2(
+            Vector3 randomPoint = new Vector3(
                 Random.Range(orbitBounds.min.x, orbitBounds.max.x),
-                Random.Range(orbitBounds.min.y, orbitBounds.max.y)
+                Random.Range(orbitBounds.min.y, orbitBounds.max.y), -1
             );
 
             if (IsValidSpawnPoint(spawnPoints, objectRadii, randomPoint, r))

@@ -11,15 +11,12 @@ public class WorldBoundsHandler : MonoBehaviour
 
     public Bounds WorldBounds { get => worldBounds; }
 
-    private void Start()
-    {
-        InitBounds();
-    }
-    private void InitBounds()
+    public void InitBounds()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         worldBounds = boxCollider.bounds;
-        
+        Debug.Log("world bounds for world bounds handler: " + worldBounds.min + ", " + worldBounds.max);
+
     }
 
     

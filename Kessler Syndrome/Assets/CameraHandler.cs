@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CameraHandler : MonoBehaviour
 {
-    [SerializeField]
-    private WorldBoundsHandler worldBoundsHandler;
+    public WorldBoundsHandler worldBoundsHandler;
 
     private Camera c;
 
@@ -38,6 +37,7 @@ public class CameraHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        worldBoundsHandler.InitBounds();
         InitProperties();
     }
 
@@ -91,6 +91,7 @@ public class CameraHandler : MonoBehaviour
         float w = 2 * orthographicSize * aspect;
 
         Bounds b = worldBoundsHandler.WorldBounds;
+        Debug.Log("world bounds for camera: "+b.min+", "+b.max);
         Vector3 minBound = new Vector3(b.min.x + (w / 2), b.min.y + (h / 2), -10);
         Vector3 maxBound = new Vector3(b.max.x - (w / 2), b.max.y - (h / 2), -10);
 

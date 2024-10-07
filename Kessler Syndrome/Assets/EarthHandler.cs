@@ -44,6 +44,7 @@ public class EarthHandler : MonoBehaviour
         xDifference = initX - endX;
         scaleDifference = endScale - initScale;
         t = gameObject.transform;
+        SetEarthPosition(1);
     }
 
 
@@ -58,7 +59,7 @@ public class EarthHandler : MonoBehaviour
 
         Transform t = gameObject.transform;
 
-        t.localPosition= new Vector3(x, t.localPosition.y);
+        t.localPosition= new Vector3(x, t.localPosition.y, 0);
         t.localScale = new Vector3(s, s, s);
     }
 }

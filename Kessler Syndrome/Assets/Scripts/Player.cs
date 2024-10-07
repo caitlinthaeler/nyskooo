@@ -63,14 +63,28 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         GetInput();
+        if (health <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        GameSceneManager gameOverScene = FindAnyObjectByType<GameSceneManager>();
+        gameOverScene.EndGame();
     }
 
     private void InitPlayer()
     {
+        Debug.Log("level data object: " + levelController.levelData);
         levelData = levelController.levelData;
-        spawnHandler.levelData = levelController.levelData;
-        spawnHandler.InitSpawnHandler();
 
+        Debug.Log(spawnHandler.massScaleFactor);
+        
+        spawnHandler.InitSpawnHandler(levelController.levelData);
+
+        Debug.Log("spawn handler: " + spawnHandler);
         // player start state
         rb = gameObject.GetComponent<Rigidbody2D>();
         transform.rotation = Quaternion.Euler(0, 0, -90);
@@ -82,6 +96,7 @@ public class Player : MonoBehaviour
 
         // world bounds and goal
         wb = wbh.WorldBounds;
+        Debug.Log("world bounds: min: "+wb.min+", max: "+ wb.max);
         goalX = wb.max.x - levelData.endSpawnOffset;
         courseLength = goalX - rb.position.x;
 
@@ -116,6 +131,7 @@ public class Player : MonoBehaviour
         // player could be deccelerating, so need to clamp position inside bounds
         else
         {
+            Debug.Log("world bounds"+wb);
             Vector3 clampedPos = new Vector3(Mathf.Clamp(rb.position.x, wb.min.x, wb.max.x), Mathf.Clamp(rb.position.y, wb.min.y, wb.max.y));
             if ((Vector3)rb.position != clampedPos)
             {

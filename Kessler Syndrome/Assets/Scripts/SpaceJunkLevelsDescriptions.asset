@@ -12,4 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d833370a3b1e44c73a64902a2cf9474f, type: 3}
   m_Name: SpaceJunkLevelsDescriptions
   m_EditorClassIdentifier: 
-  levels: []
+  descriptionsByLevel:
+  - level: 0.05
+    description: Negligiable
+  - level: 0.1
+    description: Sparse
+  - level: 0.2
+    description: Moderate
+  - level: 0.3
+    description: Alarming
+  - level: 0.4
+    description: Extreme
+  - level: 0.5
+    description: Catastrophic
+  - level: 0.6
+    description: Hypercapitalism

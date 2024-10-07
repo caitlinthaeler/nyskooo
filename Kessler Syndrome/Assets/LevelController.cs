@@ -21,6 +21,7 @@ public class LevelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         if (selectedLevel == LevelEnum.LevelEasy)
         {
             levelData = levelObjects[0];
@@ -28,5 +29,7 @@ public class LevelController : MonoBehaviour
         {
             levelData = levelObjects[1];
         }
+        if (PlayerPrefs.HasKey("level")) levelData = levelObjects[PlayerPrefs.GetInt("level")];
+        
     }
 }
