@@ -187,7 +187,7 @@ public class SpawnHandler : MonoBehaviour
             // generate random point within bounds
             Vector3 randomPoint = new Vector3(
                 Random.Range(orbitBounds.min.x, orbitBounds.max.x),
-                Random.Range(orbitBounds.min.y, orbitBounds.max.y), -1
+                Random.Range(orbitBounds.min.y, orbitBounds.max.y), -2
             );
 
             if (IsValidSpawnPoint(spawnPoints, objectRadii, randomPoint, r))

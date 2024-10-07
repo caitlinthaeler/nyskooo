@@ -59,7 +59,7 @@ public class EarthHandler : MonoBehaviour
 
         Transform t = gameObject.transform;
 
-        t.localPosition= new Vector3(x, t.localPosition.y, 0);
+        t.localPosition= new Vector3(x, t.localPosition.y, -1);
         t.localScale = new Vector3(s, s, s);
     }
 }
