@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
             // implement acceleration at some point
             rb.AddForce(transform.right * thrust);
             rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
-            Vector3 clampedPos = new Vector3(Mathf.Clamp(rb.position.x, wb.min.x, wb.max.x), Mathf.Clamp(rb.position.y, wb.min.y, wb.max.y));
+            Vector3 clampedPos = new Vector3(Mathf.Clamp(rb.position.x, wb.min.x, wb.max.x), Mathf.Clamp(rb.position.y, wb.min.y, wb.max.y), -3);
             if ((Vector3)rb.position != clampedPos)
             {
                 rb.position = clampedPos;
